@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from "react";
+import { FC, ReactNode, useState } from "react";
 import { Header, SideNav } from "../../components";
 
 export const MainLayout: FC<{ children: ReactNode; className?: string }> = ({
@@ -6,12 +6,11 @@ export const MainLayout: FC<{ children: ReactNode; className?: string }> = ({
   className,
 }) => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
-  const toggleSideNav = () => setSideNavOpen((prev) => !prev);
   return (
     <div className="min-h-screen lg:grid lg:grid-cols-[min-content_1fr]">
-      <SideNav open={sideNavOpen} onClose={toggleSideNav} />
+      <SideNav open={sideNavOpen} onClose={() => setSideNavOpen(false)} />
       <div>
-        <Header onToggle={toggleSideNav} />
+        <Header onHamburgerClick={() => setSideNavOpen(true)} />
         <div className={`p-4 ${className}`}>{children}</div>
       </div>
     </div>

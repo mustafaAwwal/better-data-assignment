@@ -21,14 +21,11 @@ export const SideNav: FC<Props> = ({ open, onClose }) => {
         className={`${display} absolute h-full w-56 border-e-2 bg-white px-4 pb-4 placeholder-blue-400 lg:sticky lg:top-0 lg:block lg:h-auto lg:border-e-0`}
       >
         <div className="flex h-16 items-center justify-between">
-          <h2 className="font-bold">Categories</h2>
+          <h2 className="font-bold">Store</h2>
           <button
             className="lg:hidden"
             aria-label="close side nav"
-            onClick={(e) => {
-              onClose?.();
-              e.stopPropagation();
-            }}
+            onClick={onClose}
           >
             <AiOutlineCloseCircle />
           </button>
@@ -37,6 +34,12 @@ export const SideNav: FC<Props> = ({ open, onClose }) => {
         {isLoading && <List />}
         {data && (
           <ul role="list" className="space-y-4">
+            <li className="lg:hidden">
+              <Link href="/">Home</Link>
+            </li>
+            <li className="lg:hidden">
+              <Link href="/products">Products</Link>
+            </li>
             {data.map((category) => (
               <li key={category} className="capitalize">
                 <Link href={`/products/category/${category}`}>{category}</Link>
