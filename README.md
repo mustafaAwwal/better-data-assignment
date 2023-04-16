@@ -5,34 +5,63 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+# install node_modules first if you have not installed it yed using yarn install
+
+yarn dev # for starting development server
+yarn test # for testing all components
+yarn storybook # for running storybook
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result for development server.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:6006](http://localhost:6006) with your browser to see the result for storybook.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Understanding the project structure
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Each sub heading below this represents a folder in `src/` directory and has its explanation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Components
 
-## Learn More
+Contains all the building blocks for the website
 
-To learn more about Next.js, take a look at the following resources:
+### Hooks
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contains all the custom hooks required for the application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Layouts
 
-## Deploy on Vercel
+Contains the common skeleton between pages. For example in our case a combination of side nav and header
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This is the directory created by nextjs containing all of our components
+
+### Stories
+
+Contains the stories for the pages folder
+
+### Tests
+
+Contains all of the tests for the pages component
+
+### Utils
+
+Contains common utilities
+
+## _Other folders to explain_
+
+### Mocks folder outside src directory
+
+This folder contains the mocks for the backend. Implemented using `msw`. Benefit of this approach are:
+
+- No need to create expensive mocks for component tests
+- No need for splitting components in data and ui because the same mocks can be used in storybooks as well
+
+### **mocks** folder outside src directory
+
+Containing auto mocked modules for react router. This feature is provided by jest.
+
+## Component structure
+
+Each component has its own folder with the main file as `index.tsx` with its corresponding test and stories with file name `index.stories.tsx` and `index.test.tsx`. The only difference is with the pages folder due to the limitation of react router.
