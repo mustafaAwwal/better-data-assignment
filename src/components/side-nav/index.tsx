@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { FC } from "react";
+import { FC } from "react";
 import { List } from "react-content-loader";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useListProductCategoriesQuery } from "../../queries/products";
@@ -25,7 +25,10 @@ export const SideNav: FC<Props> = ({ open, onClose }) => {
           <button
             className="lg:hidden"
             aria-label="close side nav"
-            onClick={onClose}
+            onClick={(e) => {
+              onClose?.();
+              e.stopPropagation();
+            }}
           >
             <AiOutlineCloseCircle />
           </button>
